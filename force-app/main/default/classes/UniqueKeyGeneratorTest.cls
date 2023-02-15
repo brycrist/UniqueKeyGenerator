@@ -28,9 +28,11 @@ private class UniqueKeyGeneratorTest {
      */
     @isTest
     static void getUsedKeys_WithMatchedAndUnmatchedKeys_MatchedKeysReturned() {
-        List<QuickText> journalTypes = TestDataFactory.createSObjectList('QuickText', new Map<String, Object>{
-            'Name' => new List<String>{'KEY1', 'KEY3', 'KEY5'}
-        }, 3);
+        List<QuickText> quickTexts = new List<QuickText>{
+            new QuickText(Name='KEY1', Message='something'),
+            new QuickText(Name='KEY3', Message='goes'),
+            new QuickText(Name='KEY5', Message='here')
+        };
         
         List<String> generatedKeys = new List<String>{'KEY1', 'KEY2', 'KEY3', 'KEY4'};
 
@@ -77,7 +79,7 @@ private class UniqueKeyGeneratorTest {
      */
     @isTest
     static void getUniqueKeys_MultipleDefinitions_CorrectFormatting() {
-        Unique_Key_Definition__mdt clawback = Unique_Key_Definition__mdt.getInstance('Clawback_Definition_Key');
+        Unique_Key_Definition__mdt clawback = Unique_Key_Definition__mdt.getInstance('Example');
         Unique_Key_Definition__mdt membership = Unique_Key_Definition__mdt.getInstance('Membership_Number');
 
         UniqueKeyGenerator.Request r1 = new UniqueKeyGenerator.Request();
