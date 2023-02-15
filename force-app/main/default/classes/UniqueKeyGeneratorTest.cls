@@ -79,7 +79,7 @@ private class UniqueKeyGeneratorTest {
      */
     @isTest
     static void getUniqueKeys_MultipleDefinitions_CorrectFormatting() {
-        Unique_Key_Definition__mdt clawback = Unique_Key_Definition__mdt.getInstance('Example');
+        Unique_Key_Definition__mdt example = Unique_Key_Definition__mdt.getInstance('Example');
         Unique_Key_Definition__mdt membership = Unique_Key_Definition__mdt.getInstance('Membership_Number');
 
         UniqueKeyGenerator.Request r1 = new UniqueKeyGenerator.Request();
@@ -92,9 +92,9 @@ private class UniqueKeyGeneratorTest {
         List<String> uniqueKeys = UniqueKeyGenerator.getUniqueKeys(requests);
         Test.stopTest();
 
-        Assert.isTrue(uniqueKeys[0].startsWith(clawback.Prefix__c), 'Prefix does not match Clawback Definition Key prefix');
+        Assert.isTrue(uniqueKeys[0].startsWith(example.Prefix__c), 'Prefix does not match Example prefix');
         Assert.isTrue(uniqueKeys[1].startsWith(membership.Prefix__c), 'Prefix does not match Membership Number prefix');
-        Assert.isTrue(uniqueKeys[2].startsWith(clawback.Prefix__c), 'Prefix does not match Clawback Definition Key prefix');
+        Assert.isTrue(uniqueKeys[2].startsWith(example.Prefix__c), 'Prefix does not match Example prefix');
     }
 
     /**
